@@ -29,8 +29,7 @@ Ce projet vise à créer une plateforme web hypermédia permettant d’explorer 
 - REST API (Omeka S)  
 
 #### Données et multimédia
-- JSON / XML  
-- D3.js (visualisation)  
+- JSON / XML   
 - Fichiers image des races
 
 #### Outils & environnements
