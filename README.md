@@ -1,68 +1,100 @@
-## 🐶 Atlas sémantique des races de chiens
+# MasterRank – Île-de-France
 
-### 🎯 Objectifs du projet
-
-Ce projet vise à créer une plateforme web hypermédia permettant d’explorer les races de chiens à travers des données structurées, des métadonnées RDF et des visualisations interactives. Il s’appuie sur des sources publiques pour offrir une expérience éducative, accessible et enrichie par des relations sémantiques entre les races, leurs origines et leurs caractéristiques.
-
----
-
-### 👥 Public cible
- 
-- Passionnés d’animaux et éducateurs
+🎯 **Objectifs du projet**  
+Ce projet vise à créer une plateforme web hypermédia permettant aux étudiants de master (M1/M2) de la région Île-de-France de partager et consulter des évaluations sur leurs expériences universitaires.  
+Les données sont structurées via **SQL** et **RDF/Turtle**, offrant une approche sémantique pour relier les universités, les cours et les domaines d’études.  
+L’objectif est de faciliter l’accès à des informations fiables et comparables pour les futurs étudiants et la communauté académique.
 
 ---
 
-### 🧰 Technologies utilisées
+👥 **Public cible**  
+- Étudiants  
+- Chercheurs  
+- Communauté académique locale  
 
-#### Front-end
+---
+
+🧰 **Technologies utilisées**  
+
+**Front-end**  
 - HTML5, CSS3, JavaScript  
-- Bootstrap  
-- Interface web via Omeka S
+- Interface web via Omeka S  
 
-#### Back-end
+**Back-end**  
 - PHP (Omeka S)  
 
-#### Base de données
-- MySQL
+**Base de données**  
+- MySQL  
 
-#### API & Services
-- REST API (Omeka S)  
+**Technologies API & services**  
+- REST API (via Omeka S)  
 
-#### Données et multimédia
-- JSON / XML   
-- Fichiers image des races
+**Données et multimédia**  
+- JSON / XML  
+- RDF / Turtle pour structuration sémantique  
 
-#### Outils & environnements
+**Outils & environnements**  
 - Git / GitHub  
-- WAMP (Windows)
+- WAMP ou équivalent pour serveur local  
 
 ---
 
-### ⚙️ Fonctionnalités prévues
-
-- Moteur de recherche par nom ou origine  
-- Système de filtres (taille, tempérament, fonction)  
-- Galerie multimédia avec images et descriptions  
-- Exportation des données RDF ou CSV  
+⚙️ **Fonctionnalités prévues**  
+- Formulaire pour ajouter des évaluations par les étudiants  
+- Système de filtres et tris : par département, université, cours, domaine, niveau (M1/M2), année  
+- Moteur de recherche pour retrouver des cours ou universités  
+- Galerie ou visualisation des évaluations par domaine ou université  
+- Export des données en CSV ou RDF  
 
 ---
 
-### 📊 Diagramme entité-relation (Mermaid)
+## 🗂️ Structure de données (Mermaid ER Diagram)
 
 ```mermaid
 erDiagram
-    BREED ||--o{ GROUP : belongs_to
+    DEPARTMENTS ||--o{ UNIVERSITIES : has
+    UNIVERSITIES ||--o{ UNIVERSITY_COURSES : offers
+    COURSES ||--o{ UNIVERSITY_COURSES : includes
+    STUDENTS ||--o{ EVALUATIONS : writes
+    UNIVERSITY_COURSES ||--o{ EVALUATIONS : receives
 
-    BREED {
-        string id
+    DEPARTMENTS {
+        int id
+        string code
         string name
-        string scientificName
-        string originCountry
     }
 
-    GROUP {
-        string id
+    UNIVERSITIES {
+        int id
         string name
-        string function
+        int department_id
     }
-```
+
+    COURSES {
+        int id
+        string mention
+        enum level
+        enum domain
+    }
+
+    UNIVERSITY_COURSES {
+        int id
+        int university_id
+        int course_id
+    }
+
+    STUDENTS {
+        int id
+        string name
+        string email
+    }
+
+    EVALUATIONS {
+        int id
+        int student_id
+        int university_course_id
+        year year
+        int rating
+        text comment
+        date evaluation_date
+    }
