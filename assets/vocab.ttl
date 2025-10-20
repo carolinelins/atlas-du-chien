@@ -1,0 +1,151 @@
+@prefix ex: <http://example.org/masterrank#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix o: <http://omeka.org/s/vocabs/o#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://example.org/masterrank#> a owl:Ontology ;
+    dcterms:title "MasterRank Vocabulary" .
+
+# Classes
+ex:Student a rdfs:Class ;
+    rdfs:label "Étudiant" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+ex:Department a rdfs:Class ;
+    rdfs:label "Département" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+ex:University a rdfs:Class ;
+    rdfs:label "Université" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+ex:Course a rdfs:Class ;
+    rdfs:label "Cours" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+ex:UniversityCourse a rdfs:Class ;
+    rdfs:label "Cours Universitaire" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+ex:Evaluation a rdfs:Class ;
+    rdfs:label "Évaluation" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+# Propriétés Étudiant
+ex:name a rdf:Property ;
+    rdfs:domain ex:Student ;
+    rdfs:range xsd:string ;
+    rdfs:label "Nom" ;
+    vs:term_status "experimental" .
+
+ex:email a rdf:Property ;
+    rdfs:domain ex:Student ;
+    rdfs:range xsd:string ;
+    rdfs:label "Email" ;
+    vs:term_status "experimental" .
+
+# Propriétés Département
+ex:code a rdf:Property ;
+    rdfs:domain ex:Department ;
+    rdfs:range xsd:string ;
+    rdfs:label "Code du département" ;
+    vs:term_status "experimental" .
+
+ex:deptName a rdf:Property ;
+    rdfs:domain ex:Department ;
+    rdfs:range xsd:string ;
+    rdfs:label "Nom du département" ;
+    vs:term_status "experimental" .
+
+# Propriétés Université
+ex:univName a rdf:Property ;
+    rdfs:domain ex:University ;
+    rdfs:range xsd:string ;
+    rdfs:label "Université" ;
+    vs:term_status "experimental" .
+
+ex:belongsToDept a rdf:Property ;
+    rdfs:domain ex:University ;
+    rdfs:range ex:Department ;
+    rdfs:label "Appartient au département" ;
+    vs:term_status "experimental" .
+
+# Propriétés Cours
+ex:mention a rdf:Property ;
+    rdfs:domain ex:Course ;
+    rdfs:range xsd:string ;
+    rdfs:label "Mention" ;
+    vs:term_status "experimental" .
+
+ex:level a rdf:Property ;
+    rdfs:domain ex:Course ;
+    rdfs:range xsd:string ;
+    rdfs:label "Niveau (M1/M2)" ;
+    vs:term_status "experimental" .
+
+ex:domain a rdf:Property ;
+    rdfs:domain ex:Course ;
+    rdfs:range xsd:string ;
+    rdfs:label "Domaine" ;
+    vs:term_status "experimental" .
+
+# Propriétés Cours Universitaire
+ex:includesCourse a rdf:Property ;
+    rdfs:domain ex:UniversityCourse ;
+    rdfs:range ex:Course ;
+    rdfs:label "Inclut le cours" ;
+    vs:term_status "experimental" .
+
+ex:offeredBy a rdf:Property ;
+    rdfs:domain ex:UniversityCourse ;
+    rdfs:range ex:University ;
+    rdfs:label "Proposé par l'université" ;
+    vs:term_status "experimental" .
+
+# Propriétés Évaluation
+ex:student a rdf:Property ;
+    rdfs:domain ex:Evaluation ;
+    rdfs:range ex:Student ;
+    rdfs:label "Étudiant" ;
+    vs:term_status "experimental" .
+
+ex:universityCourse a rdf:Property ;
+    rdfs:domain ex:Evaluation ;
+    rdfs:range ex:UniversityCourse ;
+    rdfs:label "Cours universitaire" ;
+    vs:term_status "experimental" .
+
+ex:year a rdf:Property ;
+    rdfs:domain ex:Evaluation ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "Année" ;
+    vs:term_status "experimental" .
+
+ex:rating a rdf:Property ;
+    rdfs:domain ex:Evaluation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Note" ;
+    vs:term_status "experimental" .
+
+ex:comment a rdf:Property ;
+    rdfs:domain ex:Evaluation ;
+    rdfs:range xsd:string ;
+    rdfs:label "Commentaire" ;
+    vs:term_status "experimental" .
+
+ex:evaluationDate a rdf:Property ;
+    rdfs:domain ex:Evaluation ;
+    rdfs:range xsd:date ;
+    rdfs:label "Date de l'évaluation" ;
+    vs:term_status "experimental" .
